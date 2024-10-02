@@ -1,19 +1,20 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>What's the weather like?</title>
-    <link rel="stylesheet" href="/static/main.css">
+    <title>{%block title%}weather forecast at {{weather.city}}{%endblock%}</title>
+    <link rel="stylesheet" href="{% static 'main.css'%}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
 </head>
-<body>
+<body id="st" style="background-image: url('{% static "images/img.png"%}')";>
     <section class="hero is-primary">
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
-                    Todays weather at {{weather.city}}
+                    Todays weather at {{weather.city}} {{weather_data}}
                 </h1>
             </div>
         </div>
@@ -22,7 +23,11 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-offset-4 is-4">
-                    <form action="" method="GET">
+                    <form  methods="POST">
+                        {% csrf_token %}
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                            </div>
                         <div class="field has-addons">
                             <div class="control is-expanded">
                                 <input class="input" type="text" placeholder="City Name">
@@ -32,6 +37,7 @@
                                     Add City
                                 </button>
                             </div>
+                             
                         </div>
                     </form>
                 </div>
@@ -52,6 +58,7 @@
                             <div class="media-content">
                                 <div class="content">
                                     <p>
+                                      
                                         <span class="title">{{weather.city}}</span>
                                         <br>
                                         <span class="subtitle">{{weather.description}}</span>

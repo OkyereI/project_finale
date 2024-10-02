@@ -1,0 +1,16 @@
+body {
+   color: blue;
+  }
+  #st{
+    background-size: 1800px 900px;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: ;
+}
+.head{
+  background-color: red;
+}
+.hero-body{
+  background-color: rgb(27, 24, 204);
+
+}
